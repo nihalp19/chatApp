@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect } from "react"
+import Navbar from "./components/Navbar"
+import Chat from "./components/Chat"
+import { auth } from "./firebase"
+import { onAuthStateChanged } from "firebase/auth"
 function App() {
+  const style = {
+    appContainer : "max-w-[728px] mx-auto text-center",
+    sectionContainer : "w-full flex  flex-col h-[90vh] mt-10 shadow-xl border bg-gray-50 relative",
+  }
+
+  useEffect(() => {
+    onAuthStateChanged(auth,(user) =>{
+    })
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={style.appContainer}>
+      <section className={style.sectionContainer}>
+          <Navbar/>
+          <Chat />
+      </section>
     </div>
   );
 }
